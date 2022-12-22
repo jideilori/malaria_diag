@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Malaria and wbc counter</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+   <link rel="stylesheet" href="{{ url_for('static', path='css/index.css' ) }}">
+   
+</head>
+
+<body>
+
+ 
+</body>
+
+<body>
+  
+   <nav class="navbar navbar-dark bg-dark ">
+      <a class="navbar-brand navbar-center" href="#">Mp and wbc counter</a>
+   </nav>
+ 
+   <div class="container">
+      <div class="starter-template">
+         <h2>Mp and wbc Detector</h2>
+         <p>Upload an image</p>
+      </div>
+   </div>
+
+
+  
+
+   <div class="container">
+      <form action="/" id="uploadform" enctype="multipart/form-data" method="post">
+         <input name="files" type="file" multiple>
+         <input type="submit">
+      </form>   
+   </div>
+
+  
+   {% if data %}
+    
+   {% for key, value in data.items() %}
+      
+
+      <div class="container">
+         <img src="{{ value[0]}}" alt="" width="480px" height="360px"> <p>WBC: {{value[1]}}   | MP: {{value[2]}}</p>
+         
+      </div>
+      
+   {% endfor %}
+  
+
+
+   {% endif %}
+
+<!-- <div class="container" id="img_holder">
+
+
+</div> 
+
+<span id="wbc"> WBC: </span> | <span id="mp"> MP: </span> -->
+
+
+
+     <!-- <script>
+
+  
+      uploadform.onsubmit = async (e) => {
+        e.preventDefault();
+         
+
+         fetch("http://0.0.0.0:8080/predict", {
+         method: "POST",
+         body: new FormData(uploadform),
+         }).then(res => {
+         return res.json();
+         }).then(res => {
+         const len = Object.keys(res).length // This will get you the key of the first item in the object.
+         // const imageParent = document.querySelector("#img_holder");
+         // const wbcParent = document.querySelector("#wbc");
+         // const mpParent = document.querySelector("#mp");
+
+         for (let x = 0; x < len ; x++) {
+            const imageParent = document.querySelector("#img_holder");
+            const wbcParent = document.querySelector("#wbc");
+            const mpParent = document.querySelector("#mp");
+   
+            const imageElem = document.createElement("img");
+            imageElem.height = 480;
+            const wbcElem = document.createElement("span");
+            wbcElem.style.marginLeft = '2px';
+            const mpElem = document.createElement("span");
+
+            imageElem.src = res[x][0];
+            wbcElem.innerHTML = res[x][1];
+            mpElem.innerHTML = res[x][2];
+            
+            console.log(x,res[x][0],res[x][1]);
+
+            imageParent.appendChild(imageElem);
+            wbcParent.appendChild(wbcElem);
+            mpParent.appendChild(mpElem);
+
+         };
+         }).catch(error => {
+         console.log(error)
+         })
+         
+
+
+     
+      };
+      </script>
+    -->
+
+
+</body>
+
+</html>
