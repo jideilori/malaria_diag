@@ -19,5 +19,4 @@ WORKDIR /app
 
 EXPOSE 8080
 
-# CMD python3 -m uvicorn main:app --reload --host 0.0.0.0 --port 8080 
 CMD gunicorn -w 1 -k uvicorn.workers.UvicornWorker main:app --bind=0.0.0.0:8080 --threads 4 --timeout 0 
