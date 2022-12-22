@@ -2,7 +2,7 @@
 
 A demo app that counts malaria parasites and white blood cells in thick blood smears
 
-Visit https://malaria-diag-zgymkx5l6a-uc.a.run.app/ and try out the demo images in [test_images]('test_images') folder.
+Visit https://malaria-diag-zgymkx5l6a-uc.a.run.app/ and try out the demo images in [test_images](test_images) folder.
 
 
 ![Demo screenshot](static/results/demo_screenshot.png "Demo screenshot")
