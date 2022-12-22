@@ -1,0 +1,11 @@
+fastapi==0.88.0
+Jinja2==3.1.2
+numpy==1.21.6
+opencv-python-headless==4.5.3.56
+uvicorn==0.20.0
+tqdm
+python-multipart
+gunicorn
+google-cloud-storage
+Pillow
+google-cloud-aiplatform
