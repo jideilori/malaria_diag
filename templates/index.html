@@ -55,66 +55,6 @@
 
    {% endif %}
 
-<!-- <div class="container" id="img_holder">
-
-
-</div> 
-
-<span id="wbc"> WBC: </span> | <span id="mp"> MP: </span> -->
-
-
-
-     <!-- <script>
-
-  
-      uploadform.onsubmit = async (e) => {
-        e.preventDefault();
-         
-
-         fetch("http://0.0.0.0:8080/predict", {
-         method: "POST",
-         body: new FormData(uploadform),
-         }).then(res => {
-         return res.json();
-         }).then(res => {
-         const len = Object.keys(res).length // This will get you the key of the first item in the object.
-         // const imageParent = document.querySelector("#img_holder");
-         // const wbcParent = document.querySelector("#wbc");
-         // const mpParent = document.querySelector("#mp");
-
-         for (let x = 0; x < len ; x++) {
-            const imageParent = document.querySelector("#img_holder");
-            const wbcParent = document.querySelector("#wbc");
-            const mpParent = document.querySelector("#mp");
-   
-            const imageElem = document.createElement("img");
-            imageElem.height = 480;
-            const wbcElem = document.createElement("span");
-            wbcElem.style.marginLeft = '2px';
-            const mpElem = document.createElement("span");
-
-            imageElem.src = res[x][0];
-            wbcElem.innerHTML = res[x][1];
-            mpElem.innerHTML = res[x][2];
-            
-            console.log(x,res[x][0],res[x][1]);
-
-            imageParent.appendChild(imageElem);
-            wbcParent.appendChild(wbcElem);
-            mpParent.appendChild(mpElem);
-
-         };
-         }).catch(error => {
-         console.log(error)
-         })
-         
-
-
-     
-      };
-      </script>
-    -->
-
 
 </body>
 
