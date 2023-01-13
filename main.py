@@ -17,13 +17,14 @@ from typing import List
 import requests
 import json
 import datetime
+import cv2
+
 from google.cloud import storage
+from starlette.datastructures import URL
 
 
 api_url = 'https://mp-api-app-zgymkx5l6a-uc.a.run.app/predict'
-# local_api_url = 'http://0.0.0.0:8080/predict'
-
-import cv2
+# api_url = 'http://0.0.0.0:8080/predict' #local
 
 
 def upload_blob(bucket_name, contents, destination_blob_name):
@@ -92,17 +93,20 @@ BASE_PATH = Path(__file__).resolve().parent
 TEMPLATES = Jinja2Templates(directory=str(Path(BASE_PATH ,"templates")))
 app.mount("/static", StaticFiles(directory="static"), name="static") 
 
-result_data =None
 
 @app.route('/')
 async def index(request: Request): 
-   
-    return TEMPLATES.TemplateResponse('index.html', context={'request': request,'data':result_data})
+    res_data = request.query_params._dict
+    if res_data:
+        result = res_data['result']
+        result = eval(result)
+        return TEMPLATES.TemplateResponse('index.html', context={'request': request,'data':result})
+    else:
+        return TEMPLATES.TemplateResponse('index.html', context={'request': request,'data':res_data})
    
 
 @app.post('/')
 async def predict(request: Request,files: List[UploadFile]): 
-    global result_data
 
     result_data = {}
     send_img={}
@@ -123,9 +127,7 @@ async def predict(request: Request,files: List[UploadFile]):
         
         response = requests.post(api_url,data=json_data)
         result_data[f'{vals}'] = response.json()
-
-      
-    redirect_url = request.url_for('index')    
+    redirect_url = URL(request.url_for('index')).include_query_params(result=result_data)      
     return RedirectResponse(redirect_url, status_code=status.HTTP_303_SEE_OTHER)    
 
 
