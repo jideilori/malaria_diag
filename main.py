@@ -131,8 +131,6 @@ async def predict(request: Request,files: List[UploadFile]):
     return RedirectResponse(redirect_url, status_code=status.HTTP_303_SEE_OTHER)    
 
 
-
-    
 # run with in terminal
 # uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
